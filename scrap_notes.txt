@@ -1,0 +1,31 @@
+##Anything here wrked for me, something is missing 
+##and I just quite and start over.
+## test 2
+##RUN apt-get update && apt-get install -y --no-install-recommends \     
+##	unixodbc-dev \     
+##	unixodbc \     
+##	libpq-dev
+
+##VOLUME /scripts
+##WORKDIR /scripts
+
+##ENTRYPOINT ["python"]
+
+## test 1
+##FROM python:latest
+
+##WORKDIR /usr/app/src
+###COPY test.py ./
+##ADD test.py /
+
+##CMD [ "python", "./test.py" ]
+
+###############
+## For test 3
+https://dockerlabs.collabnix.com/beginners/dockerfile/lab_dockerfile_python.html
+
+## For test 2
+https://github.com/juanmunoz00/python_classes/blob/main/Dockerfile
+
+## For test 1
+#https://www.geeksforgeeks.org/how-to-run-a-python-script-using-docker/
