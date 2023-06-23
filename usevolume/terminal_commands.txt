@@ -1,0 +1,892 @@
+ => => extracting sha256:bba7bb10d5baebcaad1d68ab3cbfd37390c646b2a688529b1d118a47991116f4
+                                                                     7.1s
+ => => sha256:d6285f41f1b6dc5d19e09aff87fbf4700c8df6453fb2608328f9aa648b08972c 2.85MB / 2.85MB
+                                                                    18.8s
+ => => extracting sha256:ec2b820b8e87758dde67c29b25d4cbf88377601a4355cc5d556a9beebc80da00
+                                                                     1.9s
+ => => extracting sha256:284f2345db055020282f6e80a646f1111fb2d5dfc6f7ee871f89bc50919a51bf
+                                                                     8.0s
+ => => extracting sha256:fea23129f080a6e28ebff8124f9dc585b412b1a358bba566802e5441d2667639
+                                                                    20.2s
+ => => extracting sha256:7c62c924b8a6474ab5462996f6663e07a515fab7f3fcdd605cae690a64aa01c7
+                                                                     0.9s
+ => => extracting sha256:b2210932934efec1c984a1fad98942bb3f4d73106610e8db5185fc5037f18409
+                                                                     1.5s
+ => => extracting sha256:ee9c01829d92f672ccecca7eaf47c437ad8ed4ca4f62101f7d6d2081bf54231e
+                                                                     0.0s
+ => => extracting sha256:d6285f41f1b6dc5d19e09aff87fbf4700c8df6453fb2608328f9aa648b08972c
+                                                                     0.7s
+ => [2/2] COPY file_io.py .
+
+                                                                     2.0s
+ => exporting to image
+
+                                                                     0.1s
+ => => exporting layers
+
+                                                                     0.0s
+ => => writing image sha256:c7beb1f01d80ca9ff9a82b50213a533508153014bdb1a280c2a5933d53dfe61e
+                                                                     0.0s
+ => => naming to docker.io/library/file-io-image
+
+                                                                     0.0s
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker run --name file-io-container -v ${PWD}:/app file-io-image
+docker: Error response from daemon: create ${PWD}: "${PWD}" includes invalid characters for a local volume name, only "[a-zA-Z0-9][a-zA-Z0-9_.-]" are allowed. If you intended to pass a host directory, use absolute path.
+See 'docker run --help'.
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker run --name file-io-container -v $(PWD):/app file-io-image
+docker: Error response from daemon: create $(PWD): "$(PWD)" includes invalid characters for a local volume name, only "[a-zA-Z0-9][a-zA-Z0-9_.-]" are allowed. If you intended to pass a host directory, use absolute path.
+See 'docker run --help'.
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker run -v myvolume:/app -it file-operations-image
+Unable to find image 'file-operations-image:latest' locally
+docker: Error response from daemon: pull access denied for file-operations-image, repository does not exist or may require 'docker login': denied: requested access to the resource is denied.
+See 'docker run --help'.
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker build -t file-operations-image .
+[+] Building 1.1s (7/7) FINISHED
+ => [internal] load .dockerignore
+
+                                                                     0.0s
+ => => transferring context: 2B
+
+                                                                     0.0s
+ => [internal] load build definition from Dockerfile
+
+                                                                     0.1s
+ => => transferring dockerfile: 125B
+
+                                                                     0.0s
+ => [internal] load metadata for docker.io/library/python:3.9
+
+                                                                     0.8s
+ => [internal] load build context
+
+                                                                     0.0s
+ => => transferring context: 32B
+
+                                                                     0.0s
+ => [1/2] FROM docker.io/library/python:3.9@sha256:98f018a1afd67f2e17a4abd5bfe09b998734ba7c1ee54780e7ed216f8b8095c3
+                                                                     0.0s
+ => CACHED [2/2] COPY file_io.py .
+
+                                                                     0.0s
+ => exporting to image
+
+                                                                     0.0s
+ => => exporting layers
+
+                                                                     0.0s
+ => => writing image sha256:c7beb1f01d80ca9ff9a82b50213a533508153014bdb1a280c2a5933d53dfe61e
+                                                                     0.0s
+ => => naming to docker.io/library/file-operations-image
+
+                                                                     0.0s
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker run -v myvolume:/app -it file-operations-image
+Traceback (most recent call last):
+  File "//file_io.py", line 4, in <module>
+    with open('data.txt', 'r') as file:
+FileNotFoundError: [Errno 2] No such file or directory: 'data.txt'
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker run -v myvolume:/app -it file-operations-image
+Traceback (most recent call last):
+  File "//file_io.py", line 4, in <module>
+    with open('data.txt', 'r') as file:
+FileNotFoundError: [Errno 2] No such file or directory: 'data.txt'
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker build -t file-operations-image .
+[+] Building 2.1s (8/8) FINISHED
+ => [internal] load .dockerignore
+
+                                                                     0.0s
+ => => transferring context: 2B
+
+                                                                     0.0s
+ => [internal] load build definition from Dockerfile
+
+                                                                     0.0s
+ => => transferring dockerfile: 142B
+
+                                                                     0.0s
+ => [internal] load metadata for docker.io/library/python:3.9
+
+                                                                     2.0s
+ => [auth] library/python:pull token for registry-1.docker.io
+
+                                                                     0.0s
+ => [1/3] FROM docker.io/library/python:3.9@sha256:98f018a1afd67f2e17a4abd5bfe09b998734ba7c1ee54780e7ed216f8b8095c3
+                                                                     0.0s
+ => [internal] load build context
+
+                                                                     0.0s
+ => => transferring context: 32B
+
+                                                                     0.0s
+ => CACHED [2/3] COPY file_io.py .
+
+                                                                     0.0s
+ => ERROR [3/3] COPY data.txt .
+
+                                                                     0.0s
+------
+ > [3/3] COPY data.txt .:
+------
+Dockerfile:6
+--------------------
+   4 |
+   5 |     COPY file_io.py .
+   6 | >>> COPY data.txt .
+   7 |
+   8 |     CMD [ "python", "file_io.py" ]
+--------------------
+ERROR: failed to solve: failed to compute cache key: failed to calculate checksum of ref 20c4ab33-1888-449c-acce-ec315d66745f::muy927lj5mf39a1lv7u3vua30: "/data.txt": not found
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ ls
+data  Dockerfile  file_io.py
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ ren data data.txt
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ ls
+data.txt  Dockerfile  file_io.py
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker build -t file-operations-image .
+[+] Building 1.0s (8/8) FINISHED
+ => [internal] load .dockerignore
+
+                                                                     0.0s
+ => => transferring context: 2B
+
+                                                                     0.0s
+ => [internal] load build definition from Dockerfile
+
+                                                                     0.0s
+ => => transferring dockerfile: 142B
+
+                                                                     0.0s
+ => [internal] load metadata for docker.io/library/python:3.9
+
+                                                                     0.7s
+ => [1/3] FROM docker.io/library/python:3.9@sha256:98f018a1afd67f2e17a4abd5bfe09b998734ba7c1ee54780e7ed216f8b8095c3
+                                                                     0.0s
+ => [internal] load build context
+
+                                                                     0.0s
+ => => transferring context: 59B
+
+                                                                     0.0s
+ => CACHED [2/3] COPY file_io.py .
+
+                                                                     0.0s
+ => [3/3] COPY data.txt .
+
+                                                                     0.0s
+ => exporting to image
+
+                                                                     0.1s
+ => => exporting layers
+
+                                                                     0.0s
+ => => writing image sha256:18e5fdaa6e884f50babd6d9a761b71e78527a3ac39c70b1cd63e846c090e9783
+                                                                     0.0s
+ => => naming to docker.io/library/file-operations-image
+
+                                                                     0.0s
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker run -v myvolume:/app -it file-operations-image
+Content of the file:
+
+Successfully written to output.txt
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ cat data.txt
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ ls
+data.txt  Dockerfile  file_io.py
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker container ls
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker run -v myvolume:/app -it file-operations-image
+Content of the file:
+
+Successfully written to output.txt
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker build -t file-operations-image .
+[+] Building 1.4s (8/8) FINISHED
+ => [internal] load .dockerignore
+                              0.1s
+ => => transferring context: 2B
+                              0.0s
+ => [internal] load build definition from Dockerfile
+                              0.2s
+ => => transferring dockerfile: 142B
+                              0.1s
+ => [internal] load metadata for docker.io/library/python:3.9
+                              0.0s
+ => CACHED [1/3] FROM docker.io/library/python:3.9
+                              0.0s
+ => [internal] load build context
+                              0.1s
+ => => transferring context: 422B
+                              0.0s
+ => [2/3] COPY file_io.py .
+                              0.2s
+ => [3/3] COPY data.txt .
+                              0.2s
+ => exporting to image
+                              0.3s
+ => => exporting layers
+                              0.2s
+ => => writing image sha256:7a65f18a8d547fe4761d3600e278bd4639686ff6fa6018f1fd4d653926e67346                    0.0s
+ => => naming to docker.io/library/file-operations-image
+                              0.0s
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker run -v myvolume:/app -it file-operations-image
+Content of the file:
+
+
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker volume ls
+DRIVER    VOLUME NAME
+local     7adcab1298ee080791596df4ed2ea6bdf73649f67f50cc75db3bb320726d8992
+local     16173abbf6952318639e42b07f7d28345139cc1f5eaf9d4d80184c2fad010da3
+local     a721f8f654dea87c6f7f59cb32d8243c93fa4e2c347d039b4a00566703281611
+local     cbc3da0c80434a9f9957e0f84256448d41faf1691c01d1030bfb2dd2fa60d181
+local     myvolume
+local     php-docker_mysql-data
+local     template_odoo_docker_compose_odoo-db-data
+local     template_odoo_docker_compose_odoo-web-data
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker run -v myvolume:/app -it python:3.9 cat /app/data.txt
+cat: /app/data.txt: No such file or directory
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker run -v "$(pwd)/data.txt:/app/data.txt" -dt file-operations-image
+docker: Error response from daemon: create $(pwd)/data.txt: "$(pwd)/data.txt" includes invalid characters for a local volume name, only "[a-zA-Z0-9][a-zA-Z0-9_.-]" are allowed. If you intended to pass a host directory, use absolute path.
+See 'docker run --help'.
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker run -v myvolume:/app -it file-operations-image -dt file-operations-image docker: Error response from daemon: failed to create task for container: failed to create shim task: OCI runtime create failed: runc create failed: unable to start container process: exec: "-dt": executable file not found in $PATH: unknown.
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker container ls
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker run -d --name file-operations-container file-operations-image
+9e15fb544e86b4199dcc1aa6928dc21ac66679c9c41f8f8ae21c659780ce9483
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker container ls
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker exec -it file-operations-container cat data.txt
+Error response from daemon: Container 9e15fb544e86b4199dcc1aa6928dc21ac66679c9c41f8f8ae21c659780ce9483 is not running
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker run -d --name file-operations-container file-operations-image
+docker: Error response from daemon: Conflict. The container name "/file-operations-container" is already in use by container "9e15fb544e86b4199dcc1aa6928dc21ac66679c9c41f8f8ae21c659780ce9483". You have to remove (or rename) that container to be able to reuse that name.
+See 'docker run --help'.
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker container -a
+unknown shorthand flag: 'a' in -a
+See 'docker container --help'.
+
+Usage:  docker container COMMAND
+
+Manage containers
+
+Commands:
+  attach      Attach local standard input, output, and error streams to a running container
+  commit      Create a new image from a container's changes
+  cp          Copy files/folders between a container and the local filesystem
+  create      Create a new container
+  diff        Inspect changes to files or directories on a container's filesystem
+  exec        Execute a command in a running container
+  export      Export a container's filesystem as a tar archive
+  inspect     Display detailed information on one or more containers
+  kill        Kill one or more running containers
+  logs        Fetch the logs of a container
+  ls          List containers
+  pause       Pause all processes within one or more containers
+  port        List port mappings or a specific mapping for the container
+  prune       Remove all stopped containers
+  rename      Rename a container
+  restart     Restart one or more containers
+  rm          Remove one or more containers
+  run         Create and run a new container from an image
+  start       Start one or more stopped containers
+  stats       Display a live stream of container(s) resource usage statistics
+  stop        Stop one or more running containers
+  top         Display the running processes of a container
+  unpause     Unpause all processes within one or more containers
+  update      Update configuration of one or more containers
+  wait        Block until one or more containers stop, then print their exit codes
+
+
+Run 'docker container COMMAND --help' for more information on a command.
+
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker container ls -a
+CONTAINER ID   IMAGE                   COMMAND                  CREATED          STATUS                      PORTS     NAMES
+9e15fb544e86   file-operations-image   "python file_io.py"      4 minutes ago    Exited (0) 4 minutes ago
+  file-operations-container
+b6b1979b4db1   file-operations-image   "-dt file-operations…"   6 minutes ago    Created
+  nice_poitras
+a5b03d7f22dc   python:3.9              "cat /app/data.txt"      9 minutes ago    Exited (1) 9 minutes ago
+  affectionate_allen
+8d951c44d16a   file-operations-image   "python file_io.py"      10 minutes ago   Exited (0) 9 minutes ago
+  ecstatic_varahamihira
+71d4244ab1c5   18e5fdaa6e88            "python file_io.py"      11 minutes ago   Exited (0) 11 minutes ago
+  awesome_diffie
+9616ed2efadf   python:3.9              "cat /app/data.txt"      16 minutes ago   Exited (1) 16 minutes ago
+  nervous_burnell
+180b1d462ffa   18e5fdaa6e88            "python file_io.py"      17 minutes ago   Exited (0) 17 minutes ago
+  great_chaplygin
+7cdc055e5aa6   c7beb1f01d80            "python file_io.py"      20 minutes ago   Exited (1) 20 minutes ago
+  hopeful_curran
+d1cbdfa7bd77   c7beb1f01d80            "python file_io.py"      22 minutes ago   Exited (1) 22 minutes ago
+  laughing_kare
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker container ls -n 2
+CONTAINER ID   IMAGE                   COMMAND                  CREATED         STATUS                     PORTS
+NAMES
+9e15fb544e86   file-operations-image   "python file_io.py"      5 minutes ago   Exited (0) 5 minutes ago
+file-operations-container
+b6b1979b4db1   file-operations-image   "-dt file-operations…"   7 minutes ago   Created
+nice_poitras
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker kill $(docker ps -q)
+unknown shorthand flag: 'q' in -q)
+See 'docker kill --help'.
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker rm $(docker ps -a -q)
+unknown shorthand flag: 'a' in -a
+See 'docker rm --help'.
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker kill $(docker ps -q)
+unknown shorthand flag: 'q' in -q)
+See 'docker kill --help'.
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker stop $(docker ps -a -q)
+unknown shorthand flag: 'a' in -a
+See 'docker stop --help'.
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker container ls -aq
+9e15fb544e86
+b6b1979b4db1
+a5b03d7f22dc
+8d951c44d16a
+71d4244ab1c5
+9616ed2efadf
+180b1d462ffa
+7cdc055e5aa6
+d1cbdfa7bd77
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker kill $(docker ps -aq)
+unknown shorthand flag: 'a' in -aq)
+See 'docker kill --help'.
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker kill
+"docker kill" requires at least 1 argument.
+See 'docker kill --help'.
+
+Usage:  docker kill [OPTIONS] CONTAINER [CONTAINER...]
+
+Kill one or more running containers
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker kill --help
+
+Usage:  docker kill [OPTIONS] CONTAINER [CONTAINER...]
+
+Kill one or more running containers
+
+Aliases:
+  docker container kill, docker kill
+
+Options:
+  -s, --signal string   Signal to send to the container
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker system prune -a
+WARNING! This will remove:
+  - all stopped containers
+  - all networks not used by at least one container
+  - all images without at least one container associated to them
+  - all build cache
+
+Are you sure you want to continue? [y/N] y
+Deleted Containers:
+9e15fb544e86b4199dcc1aa6928dc21ac66679c9c41f8f8ae21c659780ce9483
+b6b1979b4db11ae261536a06ebb41378b99d26c04a806cd4a94ac8f1081456fa
+a5b03d7f22dc73dc154e6e5778c0277db56dba85eedcc7c16bdfa30474bb0108
+8d951c44d16ade5fdb7d8abcd795787c5497f82b0ba600d144bb90ef12c3dcca
+71d4244ab1c563a2f59796fae9457d71516d40a920bb42737bb0e9a31ccfcaf6
+9616ed2efadfe45bf10363736fb57d11bfa16165c2adc00ac216bf1b90abc9d1
+180b1d462ffa8e2acf08f729b2700fe406ae8c2c8f9082287f132f257287ee27
+7cdc055e5aa646fd9935a6a1203fa18a2dacdf43bb39e7bf020e15bfad5df21b
+d1cbdfa7bd77055fef5c2bd758ac26509df468c2ff295f7686248afbe33a7a76
+
+Deleted Images:
+untagged: file-operations-image:latest
+deleted: sha256:7a65f18a8d547fe4761d3600e278bd4639686ff6fa6018f1fd4d653926e67346
+untagged: file-io-image:latest
+deleted: sha256:c7beb1f01d80ca9ff9a82b50213a533508153014bdb1a280c2a5933d53dfe61e
+deleted: sha256:18e5fdaa6e884f50babd6d9a761b71e78527a3ac39c70b1cd63e846c090e9783
+untagged: python:3.9
+untagged: python@sha256:98f018a1afd67f2e17a4abd5bfe09b998734ba7c1ee54780e7ed216f8b8095c3
+deleted: sha256:618db5c0a924c7db9c3779147b637b806bcf6b23d11adde5de1f70aa353c6807
+
+Deleted build cache objects:
+tsqbqwxzdac8ujlwo2cmz4107
+tuldnsr2og42gjvay4sc13dyj
+601frfljnmrjok13cqyalo9q0
+rgmzegksn39dmw5p4aubx7cj4
+33e5vbpcc3libd7o4xetjjjsr
+4hsqj5jkqb2b166x92txkd7sr
+lezjeekbkyxjc3mhg95k9k2yn
+pk76s1lgmqxqvbgnf0afeja32
+q38fhzxztqw0qk3bzqqeyddpc
+jezp41mhyfb032rfar0ydlf7x
+r9n3reepg1ukn565cvoopv87x
+7p4cks2qabijp15xsyqykkc74
+vdip0kxt7vofqg9z2ifsu4epa
+xc109mezgo11px89swvtq32yi
+0f2lywi10wzbcltllq3lxmhl5
+
+Total reclaimed space: 964.1kB
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker container ls -aq
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker container ls -a
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ ls
+data.txt  Dockerfile  file_io.py
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ ren file_io.py file_operations.py
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ ls
+data.txt  Dockerfile  file_operations.py
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker build -t file-operations-image .
+[+] Building 56.3s (10/10) FINISHED
+ => [internal] load .dockerignore
+                              0.0s
+ => => transferring context: 2B
+                              0.0s
+ => [internal] load build definition from Dockerfile
+                              0.1s
+ => => transferring dockerfile: 336B
+                              0.0s
+ => [internal] load metadata for docker.io/library/python:3.9
+                              2.3s
+ => [auth] library/python:pull token for registry-1.docker.io
+                              0.0s
+ => [1/4] FROM docker.io/library/python:3.9@sha256:98f018a1afd67f2e17a4abd5bfe09b998734ba7c1ee54780e7ed216f8b  52.3s
+ => => resolve docker.io/library/python:3.9@sha256:98f018a1afd67f2e17a4abd5bfe09b998734ba7c1ee54780e7ed216f8b8  0.0s
+ => => sha256:8d6fcdcf73c918683b9933499461b75bd20b5beb08ee96758bed081feb5a2d2d 2.01kB / 2.01kB                  0.0s
+ => => sha256:618db5c0a924c7db9c3779147b637b806bcf6b23d11adde5de1f70aa353c6807 7.51kB / 7.51kB                  0.0s
+ => => sha256:ec2b820b8e87758dde67c29b25d4cbf88377601a4355cc5d556a9beebc80da00 24.03MB / 24.03MB                7.9s
+ => => sha256:98f018a1afd67f2e17a4abd5bfe09b998734ba7c1ee54780e7ed216f8b8095c3 1.86kB / 1.86kB                  0.0s
+ => => sha256:bba7bb10d5baebcaad1d68ab3cbfd37390c646b2a688529b1d118a47991116f4 49.55MB / 49.55MB               11.9s
+ => => sha256:284f2345db055020282f6e80a646f1111fb2d5dfc6f7ee871f89bc50919a51bf 64.11MB / 64.11MB               16.0s
+ => => sha256:fea23129f080a6e28ebff8124f9dc585b412b1a358bba566802e5441d2667639 211.00MB / 211.00MB             35.9s
+ => => sha256:7c62c924b8a6474ab5462996f6663e07a515fab7f3fcdd605cae690a64aa01c7 6.39MB / 6.39MB                 13.7s
+ => => extracting sha256:bba7bb10d5baebcaad1d68ab3cbfd37390c646b2a688529b1d118a47991116f4                       4.3s
+ => => sha256:b2210932934efec1c984a1fad98942bb3f4d73106610e8db5185fc5037f18409 15.82MB / 15.82MB               17.4s
+ => => sha256:ee9c01829d92f672ccecca7eaf47c437ad8ed4ca4f62101f7d6d2081bf54231e 242B / 242B                     16.2s
+ => => sha256:d6285f41f1b6dc5d19e09aff87fbf4700c8df6453fb2608328f9aa648b08972c 2.85MB / 2.85MB                 17.1s
+ => => extracting sha256:ec2b820b8e87758dde67c29b25d4cbf88377601a4355cc5d556a9beebc80da00                       1.2s
+ => => extracting sha256:284f2345db055020282f6e80a646f1111fb2d5dfc6f7ee871f89bc50919a51bf                       6.9s
+ => => extracting sha256:fea23129f080a6e28ebff8124f9dc585b412b1a358bba566802e5441d2667639                      13.8s
+ => => extracting sha256:7c62c924b8a6474ab5462996f6663e07a515fab7f3fcdd605cae690a64aa01c7                       0.6s
+ => => extracting sha256:b2210932934efec1c984a1fad98942bb3f4d73106610e8db5185fc5037f18409                       1.0s
+ => => extracting sha256:ee9c01829d92f672ccecca7eaf47c437ad8ed4ca4f62101f7d6d2081bf54231e                       0.0s
+ => => extracting sha256:d6285f41f1b6dc5d19e09aff87fbf4700c8df6453fb2608328f9aa648b08972c                       0.5s
+ => [internal] load build context
+                              0.0s
+ => => transferring context: 432B
+                              0.0s
+ => [2/4] WORKDIR /app
+                              1.4s
+ => [3/4] COPY file_operations.py .
+                              0.0s
+ => [4/4] COPY data.txt .
+                              0.0s
+ => exporting to image
+                              0.1s
+ => => exporting layers
+                              0.1s
+ => => writing image sha256:077e8b38b96d9a984fc09d666d719f885146c01fb27eb846664eba91bf6d198c                    0.0s
+ => => naming to docker.io/library/file-operations-image
+                              0.0s
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker run -d --name file-operations-container file-operations-image
+0cce2208560827212d0765ced8b27bbefe77f811da53efe2ee920beaef20f949
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker container ls -a
+CONTAINER ID   IMAGE                   COMMAND                  CREATED          STATUS                      PORTS     NAMES
+0cce22085608   file-operations-image   "python file_operati…"   11 seconds ago   Exited (0) 10 seconds ago
+  file-operations-container
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker container ls
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker start -i file-operations-container
+Content of the file:
+
+
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ cat data.txt
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker cp file-operations-container:/app/data.txt .
+Successfully copied 2.05kB to C:\dev1\pythonscriptusingdocker\usevolume\.
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ ls
+data.txt  Dockerfile  file_operations.py
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ cat data.txt
+Hello, world!Hello, world!
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker build -t file-operations-image .
+[+] Building 0.8s (9/9) FINISHED
+ => [internal] load .dockerignore
+                              0.0s
+ => => transferring context: 2B
+                              0.0s
+ => [internal] load build definition from Dockerfile
+                              0.0s
+ => => transferring dockerfile: 336B
+                              0.0s
+ => [internal] load metadata for docker.io/library/python:3.9
+                              0.6s
+ => [1/4] FROM docker.io/library/python:3.9@sha256:98f018a1afd67f2e17a4abd5bfe09b998734ba7c1ee54780e7ed216f8b8  0.0s
+ => [internal] load build context
+                              0.0s
+ => => transferring context: 466B
+                              0.0s
+ => CACHED [2/4] WORKDIR /app
+                              0.0s
+ => [3/4] COPY file_operations.py .
+                              0.0s
+ => [4/4] COPY data.txt .
+                              0.0s
+ => exporting to image
+                              0.1s
+ => => exporting layers
+                              0.0s
+ => => writing image sha256:9a3f977abb6958b1a67a856a746bfd587caf148861e0fe101b95c6edec2e31d6                    0.0s
+ => => naming to docker.io/library/file-operations-image
+                              0.0s
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker run -d --name file-operations-container file-operations-image
+docker: Error response from daemon: Conflict. The container name "/file-operations-container" is already in use by container "0cce2208560827212d0765ced8b27bbefe77f811da53efe2ee920beaef20f949". You have to remove (or rename) that container to be able to reuse that name.
+See 'docker run --help'.
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker stop file-operations-container
+file-operations-container
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker run -d --name file-operations-container file-operations-image
+docker: Error response from daemon: Conflict. The container name "/file-operations-container" is already in use by container "0cce2208560827212d0765ced8b27bbefe77f811da53efe2ee920beaef20f949". You have to remove (or rename) that container to be able to reuse that name.
+See 'docker run --help'.
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker run -d --name file-operations-container file-operations-image1
+Unable to find image 'file-operations-image1:latest' locally
+docker: Error response from daemon: pull access denied for file-operations-image1, repository does not exist or may require 'docker login': denied: requested access to the resource is denied.
+See 'docker run --help'.
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker run -d --name file-operations-container1 file-operations-image
+747a0376b1c1bce1ac3c8fd6d8378945ee691399233bccdade84d118504314f9
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker start -i file-operations-container
+Content of the file:
+
+
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker cp file-operations-container1:/app/data.txt .
+Successfully copied 2.05kB to C:\dev1\pythonscriptusingdocker\usevolume\.
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ cat data.txt
+Hello, world!Hello, world!
+Hello, world!
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker stop file-operations-container
+file-operations-container
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker stop file-operations-container1
+file-operations-container1
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker system prune -a
+WARNING! This will remove:
+  - all stopped containers
+  - all networks not used by at least one container
+  - all images without at least one container associated to them
+  - all build cache
+
+Are you sure you want to continue? [y/N] y
+Deleted Containers:
+747a0376b1c1bce1ac3c8fd6d8378945ee691399233bccdade84d118504314f9
+0cce2208560827212d0765ced8b27bbefe77f811da53efe2ee920beaef20f949
+
+Deleted Images:
+untagged: file-operations-image:latest
+deleted: sha256:9a3f977abb6958b1a67a856a746bfd587caf148861e0fe101b95c6edec2e31d6
+deleted: sha256:077e8b38b96d9a984fc09d666d719f885146c01fb27eb846664eba91bf6d198c
+
+Deleted build cache objects:
+vrbw6r9nvi8e2lnbe18iiveqs
+9lnf5rujmlgu352qvhrjdahxx
+gl47hobmc0v6hx9ecfdlkvxlu
+l3wye3ow2y9ika0nc0bfi6oo8
+fwn0euxstviyfp8oil4ht3p3k
+74hqu8he60y1sr1p096jkzu25
+u7obr0vwqkoivvhydecoi2coz
+18ujzz4jclmjfltm5rteib5fw
+5qiw30oj234zre999ytlcoaoj
+v74wqlok5db0tk92vd9say0k6
+ko6ife77ft4nlr1h8xho2j0gj
+47inxcd7kyqgz5xfgim1gbfp0
+lteg2olc35zeibf4b7mly39ob
+vhvcsg78ce89wxkv7ixvhi7ts
+fmfox988ji53ycnof12mcalk9
+d739hojzjh9gwxvpi0ratki9y
+
+Total reclaimed space: 322.5kB
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker stop file-operations-container1
+Error response from daemon: No such container: file-operations-container1
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker build -t file-operations-image .
+[+] Building 59.8s (10/10) FINISHED
+ => [internal] load .dockerignore
+                              0.0s
+ => => transferring context: 2B
+                              0.0s
+ => [internal] load build definition from Dockerfile
+                              0.0s
+ => => transferring dockerfile: 336B
+                              0.0s
+ => [internal] load metadata for docker.io/library/python:3.9
+                              2.1s
+ => [auth] library/python:pull token for registry-1.docker.io
+                              0.0s
+ => [1/4] FROM docker.io/library/python:3.9@sha256:98f018a1afd67f2e17a4abd5bfe09b998734ba7c1ee54780e7ed216f8b  56.0s
+ => => resolve docker.io/library/python:3.9@sha256:98f018a1afd67f2e17a4abd5bfe09b998734ba7c1ee54780e7ed216f8b8  0.0s
+ => => sha256:bba7bb10d5baebcaad1d68ab3cbfd37390c646b2a688529b1d118a47991116f4 49.55MB / 49.55MB               13.6s
+ => => sha256:ec2b820b8e87758dde67c29b25d4cbf88377601a4355cc5d556a9beebc80da00 24.03MB / 24.03MB                5.0s
+ => => sha256:284f2345db055020282f6e80a646f1111fb2d5dfc6f7ee871f89bc50919a51bf 64.11MB / 64.11MB               16.9s
+ => => sha256:98f018a1afd67f2e17a4abd5bfe09b998734ba7c1ee54780e7ed216f8b8095c3 1.86kB / 1.86kB                  0.0s
+ => => sha256:8d6fcdcf73c918683b9933499461b75bd20b5beb08ee96758bed081feb5a2d2d 2.01kB / 2.01kB                  0.0s
+ => => sha256:618db5c0a924c7db9c3779147b637b806bcf6b23d11adde5de1f70aa353c6807 7.51kB / 7.51kB                  0.0s
+ => => sha256:fea23129f080a6e28ebff8124f9dc585b412b1a358bba566802e5441d2667639 211.00MB / 211.00MB             37.9s
+ => => sha256:7c62c924b8a6474ab5462996f6663e07a515fab7f3fcdd605cae690a64aa01c7 6.39MB / 6.39MB                 16.2s
+ => => extracting sha256:bba7bb10d5baebcaad1d68ab3cbfd37390c646b2a688529b1d118a47991116f4                       4.5s
+ => => sha256:b2210932934efec1c984a1fad98942bb3f4d73106610e8db5185fc5037f18409 15.82MB / 15.82MB               22.6s
+ => => sha256:ee9c01829d92f672ccecca7eaf47c437ad8ed4ca4f62101f7d6d2081bf54231e 242B / 242B                     17.1s
+ => => sha256:d6285f41f1b6dc5d19e09aff87fbf4700c8df6453fb2608328f9aa648b08972c 2.85MB / 2.85MB                 17.8s
+ => => extracting sha256:ec2b820b8e87758dde67c29b25d4cbf88377601a4355cc5d556a9beebc80da00                       1.2s
+ => => extracting sha256:284f2345db055020282f6e80a646f1111fb2d5dfc6f7ee871f89bc50919a51bf                       6.7s
+ => => extracting sha256:fea23129f080a6e28ebff8124f9dc585b412b1a358bba566802e5441d2667639                      15.0s
+ => => extracting sha256:7c62c924b8a6474ab5462996f6663e07a515fab7f3fcdd605cae690a64aa01c7                       0.6s
+ => => extracting sha256:b2210932934efec1c984a1fad98942bb3f4d73106610e8db5185fc5037f18409                       1.1s
+ => => extracting sha256:ee9c01829d92f672ccecca7eaf47c437ad8ed4ca4f62101f7d6d2081bf54231e                       0.0s
+ => => extracting sha256:d6285f41f1b6dc5d19e09aff87fbf4700c8df6453fb2608328f9aa648b08972c                       0.5s
+ => [internal] load build context
+                              0.0s
+ => => transferring context: 601B
+                              0.0s
+ => [2/4] WORKDIR /app
+                              1.3s
+ => [3/4] COPY file_operations.py .
+                              0.0s
+ => [4/4] COPY data.txt .
+                              0.0s
+ => exporting to image
+                              0.1s
+ => => exporting layers
+                              0.1s
+ => => writing image sha256:e93395b5d175fb314ec3b3051a10681b8a9397d6f83f2e0e78819555e579abeb                    0.0s
+ => => naming to docker.io/library/file-operations-image
+                              0.0s
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker run -d --name file-operations-container file-operations-image
+69ef95f0f4fbab395f8ce4c39524abf1c53bb46a0245ac7c1b41f2e0443e9fd9
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker start -i file-operations-container
+Content of the file:
+
+
+ 18:18:01 - Hello, world!
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker cp file-operations-container1:/app/data.txt .
+Error response from daemon: No such container: file-operations-container1
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker cp file-operations-container:/app/data.txt .
+Successfully copied 2.05kB to C:\dev1\pythonscriptusingdocker\usevolume\.
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ cat data.txt
+
+ 18:17:46 - Hello, world!
+ 18:18:01 - Hello, world!
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker start -i file-operations-container
+Content of the file:
+
+
+ 18:18:45 - Hello, world!
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker cp file-operations-container:/app/data.txt .
+Successfully copied 2.05kB to C:\dev1\pythonscriptusingdocker\usevolume\.
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ cat data.txt
+
+ 18:17:46 - Hello, world!
+ 18:18:01 - Hello, world!
+ 18:18:45 - Hello, world!
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker run -d --name file-operations-container1 file-operations-image
+2baf83d26f252e45042dbc3b7550d25b9edb98590a05209abcc1a3b8aee70bfa
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker start -i file-operations-container1
+Content of the file:
+
+
+ 18:19:22 - Hello, world!
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker cp file-operations-container:/app/data.txt .
+Successfully copied 2.05kB to C:\dev1\pythonscriptusingdocker\usevolume\.
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ cat data.txt
+
+ 18:17:46 - Hello, world!
+ 18:18:01 - Hello, world!
+ 18:18:45 - Hello, world!
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker cp file-operations-container1:/app/data.txt .
+Successfully copied 2.05kB to C:\dev1\pythonscriptusingdocker\usevolume\.
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ cat data.txt
+
+ 18:19:12 - Hello, world!
+ 18:19:22 - Hello, world!
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker stop file-operations-container1
+file-operations-container1
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker stop file-operations-container
+file-operations-container
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker cp file-operations-container1:/app/data.txt .
+Successfully copied 2.05kB to C:\dev1\pythonscriptusingdocker\usevolume\.
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker stop file-operations-container1
+file-operations-container1
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker cp file-operations-container1:/app/data.txt .
+Successfully copied 2.05kB to C:\dev1\pythonscriptusingdocker\usevolume\.
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker container ls -a
+CONTAINER ID   IMAGE                   COMMAND                  CREATED         STATUS                     PORTS
+NAMES
+2baf83d26f25   file-operations-image   "python file_operati…"   2 minutes ago   Exited (0) 2 minutes ago
+file-operations-container1
+69ef95f0f4fb   file-operations-image   "python file_operati…"   4 minutes ago   Exited (0) 3 minutes ago
+file-operations-container
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker container kill 2baf83d26f25
+Error response from daemon: Cannot kill container: 2baf83d26f25: Container 2baf83d26f252e45042dbc3b7550d25b9edb98590a05209abcc1a3b8aee70bfa is not running
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ docker volume ls
+DRIVER    VOLUME NAME
+local     7adcab1298ee080791596df4ed2ea6bdf73649f67f50cc75db3bb320726d8992
+local     16173abbf6952318639e42b07f7d28345139cc1f5eaf9d4d80184c2fad010da3
+local     a721f8f654dea87c6f7f59cb32d8243c93fa4e2c347d039b4a00566703281611
+local     cbc3da0c80434a9f9957e0f84256448d41faf1691c01d1030bfb2dd2fa60d181
+local     myvolume
+local     php-docker_mysql-data
+local     template_odoo_docker_compose_odoo-db-data
+local     template_odoo_docker_compose_odoo-web-data
+
+C:\dev1\pythonscriptusingdocker\usevolume (main -> origin)
+λ
